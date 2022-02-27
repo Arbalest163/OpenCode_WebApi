@@ -35,8 +35,7 @@ void Configure(WebApplication app)
         });
         using var scope = app.Services.CreateScope();
         var db = scope.ServiceProvider.GetRequiredService<AccessControlDbContext>();
-        db.Database.EnsureDeleted();
-        db.Database.EnsureCreated();
+        db.Migrate();
     }
 
     app.UseCustomExceptionHandler();
