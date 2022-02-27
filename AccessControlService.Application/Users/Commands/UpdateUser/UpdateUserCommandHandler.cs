@@ -16,7 +16,23 @@
             {
                 throw new NotFoundException(nameof(User), request.Id);
             }
-
+            if (!string.IsNullOrWhiteSpace(request.Name))
+            {
+                entity.Name = request.Name;
+            }
+            if (!string.IsNullOrWhiteSpace(request.Surname))
+            {
+                entity.Surname = request.Surname;
+            }
+            if (!string.IsNullOrWhiteSpace(request.Patronymic))
+            {
+                entity.Patronymic = request.Patronymic;
+            }
+            if (request.Photo is not null)
+            {
+                entity.Photo = request.Photo;
+            }
+            
             List<IdentifiersUsers>? identifiers = null;
             if (request.Identifiers is not null)
             {
@@ -25,16 +41,11 @@
                 {
                     identifiers.Add(new IdentifiersUsers { Photo = photo });
                 }
+
+                entity.IdentifiersUsers = identifiers;
             }
 
-            entity.Name = request.Name;
-            entity.Surname = request.Surname;
-            entity.Patronymic = request.Patronymic;
-            entity.Photo = request.Photo;
-            entity.IdentifiersUsers = identifiers;
-
             await _dbContext.SaveChangesAsync(cancellationToken);
-
             return Unit.Value;
         }
     }

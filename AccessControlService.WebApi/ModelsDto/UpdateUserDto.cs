@@ -2,11 +2,11 @@
 {
     public class UpdateUserDto : IMapWith<UpdateUserCommand>
     {
-        public int Id { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public string Surname { get; set; } = string.Empty;
-        public string Patronymic { get; set; } = string.Empty;
         [Required]
+        public int Id { get; set; }
+        public string? Name { get; set; }
+        public string? Surname { get; set; }
+        public string? Patronymic { get; set; }
         [CustomFileExtensions
             (FileExtensions = "jpg,jpeg,bmp,png",
              ErrorMessage = "Please select only Supported Files .png | .jpg | .jpeg | .bmp")]
