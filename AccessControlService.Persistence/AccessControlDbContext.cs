@@ -21,6 +21,11 @@ namespace AccessControlService.Persistence
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             base.OnModelCreating(modelBuilder);
         }
+
+        public void Migrate()
+        { 
+            Database.Migrate();
+        }
     }
 }
 
