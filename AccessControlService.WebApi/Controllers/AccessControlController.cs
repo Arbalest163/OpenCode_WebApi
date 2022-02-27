@@ -44,7 +44,7 @@ namespace AccessControlService.WebApi.Controllers
             return Ok(userId);
         }
 
-        [HttpPut("{id}/actions/update")]
+        [HttpPut("actions/update")]
         public async Task<IActionResult> Update([FromForm] UpdateUserDto updateUser)
         {
             var command = _mapper.Map<UpdateUserCommand>(updateUser);
