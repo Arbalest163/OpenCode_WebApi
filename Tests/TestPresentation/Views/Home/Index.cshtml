@@ -1,0 +1,30 @@
+﻿@using AccessControlService.Application.Users.Queries.GetUsers
+@model UserListVm
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h3>Все пользователи</h3>
+@foreach(var user in Model.Users)
+{
+<div>
+    <h4>Имя: @user.Name</h4>
+    <h4>Фамилия: @user.Surname</h4>
+    <h4>Отчество: @user.Patronymic</h4>
+    @if (user.Photo != null)
+        {
+            <div>
+                <h4>Аватар</h4>
+            <img style='width:100px; height:60px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(user.Photo))" />
+            </div>
+        }
+        @if (user.Identifiers != null)
+        {
+               <h4>Лица</h4>
+            foreach (var photo in user.Identifiers)
+            {
+                <img style='width:100px; height:60px;' src="data:image/jpeg;base64,@(Convert.ToBase64String(photo.Photo))" />
+            }
+        }
+    </div>
+}
